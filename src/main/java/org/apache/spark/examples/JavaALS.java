@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * hdfs dfs -rm -r -f hdfs://node91:9000/wyh/output/ALS/*
  * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.JavaALS \
     --name JavaALS spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar \
-    hdfs://node91:9000/wyh/dataset/ALS/test.data 10 2 hdfs://node91:9000/wyh/output/ALS
+    hdfs://node91:9000/wyh/dataset/ALS/ml-100k/alsTest.data 10 2 hdfs://node91:9000/wyh/output/ALS
  */
 public final class JavaALS {
 
