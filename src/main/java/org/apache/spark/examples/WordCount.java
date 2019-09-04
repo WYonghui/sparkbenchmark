@@ -34,17 +34,6 @@ public class WordCount {
 
     public static void main(String[] args) {
 
-//        if (args.length < 2) {
-//            System.err.println("Usage: JavaWordCount <srcFile> <outFile>");
-//            System.exit(1);
-//        }
-
-//        SparkSession spark = SparkSession
-////                .builder()
-////                .appName("WordCount")
-//////                .config("spark.locality.wait", 0)
-//////                .config("spark.default.parallelism", 300)
-////                .getOrCreate();
         SparkSession.Builder builder = SparkSession.builder();
         //解析参数
         Args.parseOrExit(WordCount.class, args);

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * hdfs dfs -rm -r -f hdfs://node91:9000/wyh/output/ALS/*
  * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.JavaALS \
     --name JavaALS spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar \
-    hdfs://node91:9000/wyh/dataset/ALS/ml-100k/alsTest.data 10 2 hdfs://node91:9000/wyh/output/ALS
+    hdfs://node91:9000/wyh/dataset/ALS/ml-100k/alsTest.data 10 1 hdfs://node91:9000/wyh/output/ALS
  */
 public final class JavaALS {
 
@@ -65,11 +65,12 @@ public final class JavaALS {
         MatrixFactorizationModel model = ALS.train(ratings.rdd(), rank, iterations, 0.01, blocks);
         System.out.println("calling ALS.train hahahha");
 
-        model.userFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
-                outputDir + "/userFeatures");
-        model.productFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
-                outputDir + "/productFeatures");
-        System.out.println("Final user/product features written to " + outputDir);
+        model.userFeatures().toJavaRDD().first();
+//        model.userFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
+//                outputDir + "/userFeatures");
+//        model.productFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
+//                outputDir + "/productFeatures");
+//        System.out.println("Final user/product features written to " + outputDir);
 
         sc.stop();
     }
