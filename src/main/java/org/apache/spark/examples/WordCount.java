@@ -53,7 +53,7 @@ public class WordCount {
 
         JavaPairRDD<String, Integer> counts = ones.reduceByKey((i1, i2) -> i1 + i2);
 
-        counts.saveAsTextFile("hdfs://node91:9000//wyh/output/wordcount/001");
+        counts.saveAsTextFile("hdfs://node39:9000/hadoop-5nodes/output/wordCount/0001");
 
         spark.stop();
 

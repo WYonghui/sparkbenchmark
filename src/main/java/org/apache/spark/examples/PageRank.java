@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
  * <p>
  * Example Usage:
  * <pre>
+ * hdfs dfs -rm -r -f /wyh/output/pagerank/*  
  * bin/run-example JavaPageRank data/mllib/pagerank_data.txt 10
  * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.PageRank \
       --name PageRank spark-benchmark-1.0-SNAPSHOT.jar hdfs://node91:9000//wyh/testDataSet/out.web-Google 3 hdfs://node91:9000//wyh/output/pagerank/001

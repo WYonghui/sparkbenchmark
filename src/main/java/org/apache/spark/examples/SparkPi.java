@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.SparkPi --name Pi spark-benchmark-1.0-SNAPSHOT.jar 10
+ * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.SparkPi \
+      --name Pi spark-benchmark-1.0-SNAPSHOT.jar 10
  */
 public class SparkPi {
 
@@ -35,7 +36,7 @@ public class SparkPi {
             return (x * x + y * y <= 1) ? 1 : 0;
         }).reduce((integer, integer2) -> integer + integer2);
 
-        System.out.println("Pi is roughly " + 4.0 * count / n);
+//        System.out.println("Pi is roughly " + 4.0 * count / n);
 
         spark.stop();
     }
