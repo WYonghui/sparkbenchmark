@@ -1,131 +1,155 @@
 package org.apache.spark.examples;
 
 import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.PairFunction;
+import org.apache.spark.api.java.function.*;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.storage.StorageLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.Tuple2;
+import scala.Tuple3;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 /**
  * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.Job1077229 \
-      spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar Job1077229
+      spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar Job1077229 15 ratings.csv tags.csv 0
  */
 public class Job1077229 {
     private static Logger LOG = LoggerFactory.getLogger(Job1077229.class);
 
-
     public static void main(String[] args) {
 
-        if (args.length < 1) {
-            LOG.error("Usage: Job1077229 <appName>");
+        if (args.length < 4) {
+            LOG.error("Usage: Job1077229 <appName> <parallelism> <inputFile1> <inputFile2>");
             System.exit(-1);
         }
 
-        SparkSession spark = SparkSession
+        SparkSession.Builder sparkBuilder = SparkSession
                 .builder()
                 .appName(args[0])
-                .config("spark.default.parallelism", 12)
-                .getOrCreate();
+                .config("spark.default.parallelism", Integer.parseInt(args[1]));
+
+        if (args.length == 5) {
+            sparkBuilder.config("", Integer.parseInt(args[4]));
+        }
+        SparkSession spark = sparkBuilder.getOrCreate();
 
         JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
-        List<Tuple2<String, Integer>> moviesList = new ArrayList<>();
-        addMoviesToList(moviesList);
+        String ratingsFile = args[2];
+        String moviesFile = args[3];
 
-        JavaPairRDD<String, Integer> movies = sc.parallelizePairs(moviesList);
-        JavaPairRDD<String, Integer> moviesLat = movies.mapToPair(new PairFunction<Tuple2<String, Integer>, String, Integer>() {
+        JavaRDD<Tuple3<Integer, Integer, Double>> ratings = sc.textFile(ratingsFile).map(
+                new Function<String, Tuple3<Integer, Integer, Double>>() {
+                    @Override
+                    public Tuple3<Integer, Integer, Double> call(String s) throws Exception {
+                        String[] items = s.split(",");
+
+//                        movieId, userId, rating
+                        return new Tuple3<Integer, Integer, Double>(
+                                Integer.parseInt(items[1]),
+                                Integer.parseInt(items[0]),
+                                Double.parseDouble(items[2]));
+                    }
+                }
+        );
+
+        JavaPairRDD<Integer, Tuple2<Integer, Double>> reducedRatings = ratings.mapPartitionsToPair(
+            new PairFlatMapFunction<Iterator<Tuple3<Integer, Integer, Double>>, Integer, Tuple2<Integer, Double>>() {
+                @Override
+                public Iterator<Tuple2<Integer, Tuple2<Integer, Double>>> call(Iterator<Tuple3<Integer, Integer, Double>> tuple3Iterator) throws Exception {
+                    List<Tuple2<Integer, Tuple2<Integer, Double>>> list = new ArrayList<>();
+                    while (tuple3Iterator.hasNext()) {
+                        Tuple3<Integer, Integer, Double> tuple = tuple3Iterator.next();
+                        list.add(new Tuple2<>(tuple._1(), new Tuple2<>(tuple._2(), tuple._3())));
+                    }
+
+                    return list.iterator();
+                }
+            })
+            .reduceByKey(new Function2<Tuple2<Integer, Double>, Tuple2<Integer, Double>, Tuple2<Integer, Double>>() {
+                @Override
+                public Tuple2<Integer, Double> call(Tuple2<Integer, Double> integerDoubleTuple2, Tuple2<Integer, Double> integerDoubleTuple22) throws Exception {
+                    Tuple2<Integer, Double> tuple = new Tuple2<Integer, Double>(integerDoubleTuple2._1, (integerDoubleTuple2._2 + integerDoubleTuple22._2) / 2);
+                    return tuple;
+                }
+            }).cache();
+
+        JavaPairRDD<Integer, Double> moviesAndRating = reducedRatings.mapPartitionsToPair(new PairFlatMapFunction<Iterator<Tuple2<Integer, Tuple2<Integer, Double>>>, Integer, Double>() {
             @Override
-            public Tuple2<String, Integer> call(Tuple2<String, Integer> stringIntegerTuple2) throws Exception {
-                Thread.sleep(2000);
-                return stringIntegerTuple2;
+            public Iterator<Tuple2<Integer, Double>> call(Iterator<Tuple2<Integer, Tuple2<Integer, Double>>> tuple2Iterator) throws Exception {
+                List<Tuple2<Integer, Double>> list = new ArrayList<>();
+                while (tuple2Iterator.hasNext()) {
+                    Thread.sleep(3);
+                    Tuple2<Integer, Tuple2<Integer, Double>> tuple2Tuple2 = tuple2Iterator.next();
+                    list.add(new Tuple2<>(tuple2Tuple2._1, tuple2Tuple2._2._2));
+                }
+                return list.iterator();
             }
-        }); //stage 1
+        });
 
-        List<Tuple2<String, Double>> ratingsList = new ArrayList<>();
-        addRatingsToList(ratingsList);
-        JavaPairRDD<String, Double> ratings = sc.parallelizePairs(ratingsList);
-
-        JavaPairRDD<String, Double> ratingsWithNoRepeatLat = ratings.mapToPair(
-                new PairFunction<Tuple2<String, Double>, String, Double>() {
+        JavaPairRDD<Integer, String> movies = sc.textFile(moviesFile).map(
+                new Function<String, Tuple2<Integer, String>>() {
+                    @Override
+                    public Tuple2<Integer, String> call(String s) throws Exception {
+//                        Thread.sleep(100);
+                        String[] pros = s.split(",");
+                        return new Tuple2<>(Integer.parseInt(pros[1]), pros[2]);
+                    }
+                }
+        ).mapPartitionsToPair(new PairFlatMapFunction<Iterator<Tuple2<Integer, String>>, Integer, String>() {
             @Override
-            public Tuple2<String, Double> call(Tuple2<String, Double> stringDoubleTuple2) throws Exception {
-                Thread.sleep(2000);
-                return stringDoubleTuple2;
+            public Iterator<Tuple2<Integer, String>> call(Iterator<Tuple2<Integer, String>> tuple2Iterator) throws Exception {
+                List<Tuple2<Integer, String>> list = new ArrayList<>();
+                while (tuple2Iterator.hasNext()) {
+                    Tuple2<Integer, String> tuple2 = tuple2Iterator.next();
+                    list.add(new Tuple2<>(tuple2._1, tuple2._2));
+                }
+                return list.iterator();
             }
-        }); // stage 2
-//        ratingsWithNoRepeatLat.cache();
-
-
-        JavaPairRDD<String, Tuple2<Integer, Double>> moviesWithRating = (JavaPairRDD<String, Tuple2<Integer, Double>>) moviesLat.join(ratingsWithNoRepeatLat);
-        JavaPairRDD<String, Integer> moviesWithId = moviesWithRating.mapToPair(new PairFunction<Tuple2<String, Tuple2<Integer, Double>>, String, Integer>() {
+        }).reduceByKey(new Function2<String, String, String>() {
             @Override
-            public Tuple2<String, Integer> call(Tuple2<String, Tuple2<Integer, Double>> stringTuple2Tuple2) throws Exception {
-                Thread.sleep(2000);
-                return new Tuple2<>(stringTuple2Tuple2._1, stringTuple2Tuple2._2._1);
+            public String call(String s, String s2) throws Exception {
+                return s;
             }
-        }); //stage 3
+        });
 
-        JavaPairRDD<String, Double> ratingsEveryMovie = ratingsWithNoRepeatLat.reduceByKey((d1, d2) -> (d1 + d2) / 2);
-        JavaPairRDD<String, Double> ratingsEveryMovieLat = ratingsEveryMovie.mapToPair(
-                new PairFunction<Tuple2<String, Double>, String, Double>() {
+        JavaPairRDD<Integer, Tuple2<Tuple2<Integer, Double>, String>> join1 = (JavaPairRDD<Integer, Tuple2<Tuple2<Integer, Double>, String>>) reducedRatings.join(movies);
+        JavaPairRDD<Integer, String> joinMovies = join1.mapPartitionsToPair(new PairFlatMapFunction<Iterator<Tuple2<Integer, Tuple2<Tuple2<Integer, Double>, String>>>, Integer, String>() {
             @Override
-            public Tuple2<String, Double> call(Tuple2<String, Double> stringDoubleTuple2) throws Exception {
-                Thread.sleep(2000);
-                return stringDoubleTuple2;
+            public Iterator<Tuple2<Integer, String>> call(Iterator<Tuple2<Integer, Tuple2<Tuple2<Integer, Double>, String>>> tuple2Iterator) throws Exception {
+                List<Tuple2<Integer, String>> list = new ArrayList<>();
+                while (tuple2Iterator.hasNext()) {
+                    Thread.sleep(5);
+                    Tuple2<Integer, Tuple2<Tuple2<Integer, Double>, String>> tuple = tuple2Iterator.next();
+                    list.add(new Tuple2<>(tuple._1, tuple._2._2));
+                }
+                return list.iterator();
             }
-        }); // stage4
+        });
 
-        JavaPairRDD<String, Tuple2<Integer, Double>> result = (JavaPairRDD<String, Tuple2<Integer, Double>>) moviesWithId.join(ratingsEveryMovieLat);
-        Long resultNum = result.mapToPair(new PairFunction<Tuple2<String, Tuple2<Integer, Double>>, Integer, Double>() {
-            @Override
-            public Tuple2<Integer, Double> call(Tuple2<String, Tuple2<Integer, Double>> stringTuple2Tuple2) throws Exception {
-                Thread.sleep(1000);
-                return stringTuple2Tuple2._2;
-            }
-        }).count();  //stage5
-        LOG.info(resultNum.toString());
-//        ratingsWithNoRepeatLat.unpersist();
+        JavaPairRDD<Integer, Tuple2<String, Double>> moviesRating = (JavaPairRDD<Integer, Tuple2<String, Double>>) joinMovies
+                .join(moviesAndRating)
+                .mapPartitionsToPair(new PairFlatMapFunction<Iterator<Tuple2<Integer, Tuple2<String, Double>>>, Integer, Tuple2<String, Double>>() {
+                    @Override
+                    public Iterator<Tuple2<Integer, Tuple2<String, Double>>> call(Iterator<Tuple2<Integer, Tuple2<String, Double>>> tuple2Iterator) throws Exception {
+                        List<Tuple2<Integer, Tuple2<String, Double>>> list = new ArrayList<>();
+                        while (tuple2Iterator.hasNext()) {
+//                            Thread.sleep(1);
+                            Tuple2<Integer, Tuple2<String, Double>> tuple = tuple2Iterator.next();
+                            list.add(tuple);
+                        }
+                        return list.iterator();
+                    }
+                });
 
-        spark.stop();
 
-    }
-
-    private static void addMoviesToList(List<Tuple2<String, Integer>> list) {
-        list.add(new Tuple2<>("Toy Story", 1));
-        list.add(new Tuple2<>("Jumanji", 2));
-        list.add(new Tuple2<>("Grumpier Old Men", 3));
-        list.add(new Tuple2<>("Waiting to Exhale", 4));
-        list.add(new Tuple2<>("Father of the Bride Part II", 5));
-        list.add(new Tuple2<>("Heat", 6));
-        list.add(new Tuple2<>("Sabrina", 7));
-        list.add(new Tuple2<>("Tom and Huck", 8));
-        list.add(new Tuple2<>("Sudden Death", 9));
-        list.add(new Tuple2<>("GoldenEye", 10));
-        list.add(new Tuple2<>("American President", 11));
-        list.add(new Tuple2<>("Dracula: Dead and Loving It", 12));
-    }
-
-    private static void addRatingsToList(List<Tuple2<String, Double>> list) {
-        list.add(new Tuple2<>("Toy Story", 3D));
-        list.add(new Tuple2<>("Jumanji", 2D));
-        list.add(new Tuple2<>("Grumpier Old Men", 2D));
-//        list.add(new Tuple2<>("Grumpier Old Men", 4D));
-        list.add(new Tuple2<>("Waiting to Exhale", 4D));
-        list.add(new Tuple2<>("Father of the Bride Part II", 5D));
-        list.add(new Tuple2<>("Heat", 3D));
-        list.add(new Tuple2<>("Sabrina", 3D));
-//        list.add(new Tuple2<>("Sabrina", 5D));
-        list.add(new Tuple2<>("Tom and Huck", 2D));
-        list.add(new Tuple2<>("Sudden Death", 1D));
-        list.add(new Tuple2<>("GoldenEye", 5D));
-        list.add(new Tuple2<>("American President", 4D));
-        list.add(new Tuple2<>("Dracula: Dead and Loving It", 2D));
+        LOG.info("result is " + moviesRating.first()._1);
     }
 }

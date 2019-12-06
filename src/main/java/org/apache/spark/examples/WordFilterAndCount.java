@@ -15,19 +15,23 @@ import java.util.regex.Pattern;
 /**
  * hdfs dfs -rm -r -f hdfs://node91:9000/wyh/output/wordcount/*
  * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.WordFilterAndCount \
- spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar -name WordFilterAndCount \
- -file1 hdfs://node91:9000/wyh/dataset/wiki/file-3GB \
- -file2 hdfs://node91:9000/wyh/dataset/wiki/file-2GB -parallelism 800 -wait 0
+     spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar -name WordFilterAndCount \
+     -file1 hdfs://node91:9000/wyh/dataset/wiki/file-3GB \
+     -file2 hdfs://node91:9000/wyh/dataset/wiki/file-2GB \
+     -outputFile hdfs://node91:9000//wyh/output/wordcount/001 -parallelism 800 -wait 0
  */
 public class WordFilterAndCount {
     private static Logger LOG = LoggerFactory.getLogger(WordFilterAndCount.class);
     private static final Pattern SPACE = Pattern.compile("\\W+");
 
-    @Argument(alias = "f", description = "source file", required = true)
+    @Argument(alias = "f1", description = "source file1", required = true)
     private static String file1;
 
-    @Argument(alias = "f", description = "source file", required = true)
+    @Argument(alias = "f2", description = "source file2", required = true)
     private static String file2;
+
+    @Argument(alias = "f3", description = "output file", required = true)
+    private static String outputFile;
 
     @Argument(alias = "n", description = "application name", required = true)
     private static String name;
@@ -79,7 +83,7 @@ public class WordFilterAndCount {
         JavaPairRDD<String, Integer> counts2 = ones2.reduceByKey((i1, i2) -> i1 + i2);
 
         JavaPairRDD<String, Integer> result = counts.union(counts2);
-        result.saveAsTextFile("hdfs://node91:9000//wyh/output/wordcount/001");
+        result.saveAsTextFile(outputFile);
 
         ss.stop();
     }

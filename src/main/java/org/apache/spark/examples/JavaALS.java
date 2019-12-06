@@ -65,7 +65,7 @@ public final class JavaALS {
         MatrixFactorizationModel model = ALS.train(ratings.rdd(), rank, iterations, 0.01, blocks);
         System.out.println("calling ALS.train hahahha");
 
-        model.userFeatures().toJavaRDD().first();
+        System.out.println(model.userFeatures().toJavaRDD().map(new FeaturesToString()).first());
 //        model.userFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
 //                outputDir + "/userFeatures");
 //        model.productFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(

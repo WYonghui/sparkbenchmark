@@ -19,8 +19,9 @@ import java.util.regex.Pattern;
 /**
  * hdfs dfs -rm -r -f hdfs://node91:9000/wyh/output/wordcount/*
  * spark-submit --master spark://node91:6066 --deploy-mode cluster --class org.apache.spark.examples.WordCountTwice \
- spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar -name WordCountTwice \
- -file hdfs://node91:9000/wyh/testDataSet/wikipedia_30GB -parallelism 800 -wait 0
+     spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar -name WordCountTwice \
+     -file hdfs://node91:9000/wyh/testDataSet/wikipedia_30GB \
+     -outputFile hdfs://node91:9000//wyh/output/wordcount/001 -parallelism 800 -wait 0
  */
 public class WordCountTwice {
     private static Logger LOG = LoggerFactory.getLogger(WordCountTwice.class);
@@ -28,6 +29,9 @@ public class WordCountTwice {
 
     @Argument(alias = "f", description = "source file", required = true)
     private static String file;
+
+    @Argument(alias = "o", description = "output file", required = true)
+    private static String outputFile;
 
     @Argument(alias = "n", description = "application name", required = true)
     private static String name;
@@ -90,7 +94,7 @@ public class WordCountTwice {
         JavaPairRDD<String, Integer> counts2 = ones2.reduceByKey((i1, i2) -> i1 + i2);
 
         JavaPairRDD<String, Integer> result = counts.union(counts2);
-        result.saveAsTextFile("hdfs://node91:9000//wyh/output/wordcount/001");
+        result.saveAsTextFile(outputFile);
 
         ss.stop();
 
