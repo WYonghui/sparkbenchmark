@@ -63,14 +63,13 @@ public final class JavaALS {
         JavaRDD<Rating> ratings = lines.map(new ParseRating());
 
         MatrixFactorizationModel model = ALS.train(ratings.rdd(), rank, iterations, 0.01, blocks);
-        System.out.println("calling ALS.train hahahha");
 
-        System.out.println(model.userFeatures().toJavaRDD().map(new FeaturesToString()).first());
-//        model.userFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
-//                outputDir + "/userFeatures");
-//        model.productFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
-//                outputDir + "/productFeatures");
-//        System.out.println("Final user/product features written to " + outputDir);
+//        System.out.println(model.userFeatures().toJavaRDD().map(new FeaturesToString()).first());
+        model.userFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
+                outputDir + "/userFeatures");
+        model.productFeatures().toJavaRDD().map(new FeaturesToString()).saveAsTextFile(
+                outputDir + "/productFeatures");
+        System.out.println("Final user/product features written to " + outputDir);
 
         sc.stop();
     }

@@ -13,7 +13,7 @@ import java.util.List;
  * java -cp spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.spark.examples.HelloWorld -n helloWorld
  */
 public class HelloWorld {
-    private static final Logger LOG = LoggerFactory.getLogger(HelloWorld.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ScalaHelloWorld.class);
 
     @Argument(alias = "n", description = "application name") //, required = true
     private static String name;
@@ -25,7 +25,7 @@ public class HelloWorld {
         for (int i = 0; i < strs.length; i++) {
             LOG.info(strs[i]);
         }
-        List<String> unparsed = Args.parseOrExit(HelloWorld.class, args);
+        List<String> unparsed = Args.parseOrExit(ScalaHelloWorld.class, args);
 
         LOG.info("application name: " + name);
 
