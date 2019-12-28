@@ -7,7 +7,7 @@ import org.apache.spark.sql.SparkSession
 /**
   * spark-submit --master spark://inode39:7077 --deploy-mode client --class org.apache.spark.examples.graphx.TriangleCountingExample \
       spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar TriangleCountingExample \
-      /hadoop-5nodes/dataset/graphx/follows.txt /hadoop-5nodes/dataset/graphx/users.txt
+      /hadoop-5nodes/dataset/graphx/followers.txt /hadoop-5nodes/dataset/graphx/users.txt
   */
 object TriangleCountingExample {
 

@@ -14,14 +14,14 @@ import org.slf4j.LoggerFactory;
 /**
  * spark-submit --master spark://inode39:7077 --deploy-mode client --class org.apache.spark.examples.mllib.JavaKmeansExample \
      spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar JavaKmeansExample \
-     /hadoop-5nodes/dataset/kmeans/kmeans_data.txt
+     /hadoop-5nodes/dataset/kmeans/kmeans_data.txt /hadoop-5nodes/output/kmeans/KMeansModel
  */
 public class JavaKmeansExample {
     private static Logger LOG = LoggerFactory.getLogger(JavaKmeansExample.class);
     public static void main(String[] args) {
 
         if (args.length < 2) {
-            LOG.info("Usage : JavaKmeansExample <appName> <inputFile>");
+            LOG.info("Usage : JavaKmeansExample <appName> <inputFile> <outputPath>");
             System.exit(-1);
         }
 
@@ -48,24 +48,26 @@ public class JavaKmeansExample {
 
         // Cluster the data into two classes using KMeans
         int numClusters = 2;
-        int numIterations = 20;
+        int numIterations = 10;
         KMeansModel clusters = KMeans.train(parsedData.rdd(), numClusters, numIterations);
 
-        System.out.println("Cluster centers:");
-        for (Vector center: clusters.clusterCenters()) {
-            System.out.println(" " + center);
-        }
-        double cost = clusters.computeCost(parsedData.rdd());
-        System.out.println("Cost: " + cost);
 
-        // Evaluate clustering by computing Within Set Sum of Squared Errors
-        double WSSSE = clusters.computeCost(parsedData.rdd());
-        System.out.println("Within Set Sum of Squared Errors = " + WSSSE);
+//        System.out.println("Cluster centers:");
+//        for (Vector center: clusters.clusterCenters()) {
+//            System.out.println(" " + center);
+//        }
+//        double cost = clusters.computeCost(parsedData.rdd());
+//        System.out.println("Cost: " + cost);
+//
+//        // Evaluate clustering by computing Within Set Sum of Squared Errors
+//        double WSSSE = clusters.computeCost(parsedData.rdd());
+//        System.out.println("Within Set Sum of Squared Errors = " + WSSSE);
 
         // Save and load model
-        clusters.save(jsc.sc(), "target/org/apache/spark/JavaKMeansExample/KMeansModel");
-        KMeansModel sameModel = KMeansModel.load(jsc.sc(),
-                "target/org/apache/spark/JavaKMeansExample/KMeansModel");
+//        clusters.save(jsc.sc(), "target/org/apache/spark/JavaKMeansExample/KMeansModel");
+        clusters.save(jsc.sc(), args[2]);
+//        KMeansModel sameModel = KMeansModel.load(jsc.sc(),
+//                "target/org/apache/spark/JavaKMeansExample/KMeansModel");
         // $example off$
 
         jsc.stop();

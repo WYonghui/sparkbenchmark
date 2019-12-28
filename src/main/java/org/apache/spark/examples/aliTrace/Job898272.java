@@ -43,26 +43,26 @@ public class Job898272 {
         String tags3File = args[5];
 
         JavaPairRDD<Integer, Integer> ratings = sc.textFile(ratingsFile)
-                .mapPartitionsToPair(new StringMapPartition(24000))
+                .mapPartitionsToPair(new StringMapPartition(24000L))
                 .reduceByKey(new ReducedFunction())
                 .cache();
 
         JavaPairRDD<Integer, Integer> tags1 = sc.textFile(tags1File)
-                .mapPartitionsToPair(new StringMapPartition(12000))
+                .mapPartitionsToPair(new StringMapPartition(12000L))
                 .reduceByKey(new ReducedFunction());
 
         JavaPairRDD<Integer, Integer> join1 = tags1.join(ratings)
-                .mapPartitionsToPair(new Tuple2MapPartition(15000));
+                .mapPartitionsToPair(new Tuple2MapPartition(15000L));
 
         JavaPairRDD<Integer, Integer> tags2 = sc.textFile(tags2File)
-                .mapPartitionsToPair(new StringMapPartition(12000))
+                .mapPartitionsToPair(new StringMapPartition(12000L))
                 .reduceByKey(new ReducedFunction());
 
         JavaPairRDD<Integer, Integer> join2 = tags2.join(ratings)
-                .mapPartitionsToPair(new Tuple2MapPartition(12000));
+                .mapPartitionsToPair(new Tuple2MapPartition(12000L));
 
         JavaPairRDD<Integer, Integer> tags3 = sc.textFile(tags3File)
-                .mapPartitionsToPair(new StringMapPartition(15000))
+                .mapPartitionsToPair(new StringMapPartition(15000L))
                 .reduceByKey(new ReducedFunction());
 
         JavaPairRDD<Integer, Integer> result = join1.join(join2)
@@ -78,45 +78,57 @@ public class Job898272 {
         result.collect();
     }
 
+    private void sleepFunction(Long time) {
+        Long start = System.currentTimeMillis();
+        while (true) {
+            double a = 12332.234;
+            double b = 23545342.2342;
+            double c = a * b;
+            if ((System.currentTimeMillis() - start) > time) {
+                break;
+            }
+        }
+    }
+
     private static class StringMapPartition implements PairFlatMapFunction<Iterator<String>, Integer, Integer> {
 
-        private Integer sleepTime;
+        private Long sleepTime;
 
-        StringMapPartition(Integer sleepTime) {
+        StringMapPartition(Long sleepTime) {
             this.sleepTime = sleepTime;
         }
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<String> stringIterator) throws Exception {
-            Thread.sleep(sleepTime);
+            (new Job898272()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
 
     private static class IntegerMapPartition implements PairFlatMapFunction<Iterator<Tuple2<Integer, Integer>>, Integer, Integer> {
-        private Integer sleepTime;
+        private Long sleepTime;
 
-        IntegerMapPartition(Integer sleepTime) {
+        IntegerMapPartition(Long sleepTime) {
             this.sleepTime = sleepTime;
         }
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Integer>> tuple2Iterator) throws Exception {
-            Thread.sleep(sleepTime);
+            (new Job898272()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
 
     private static class Tuple2MapPartition implements PairFlatMapFunction<Iterator<Tuple2<Integer, Tuple2<Integer, Integer>>>, Integer, Integer> {
-        private Integer sleepTime;
+        private Long sleepTime;
 
-        Tuple2MapPartition(Integer sleepTime) {
+        Tuple2MapPartition(Long sleepTime) {
             this.sleepTime = sleepTime;
         }
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Tuple2<Integer, Integer>>> tuple2Iterator) throws Exception {
-            Thread.sleep(sleepTime);
+            (new Job898272()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }

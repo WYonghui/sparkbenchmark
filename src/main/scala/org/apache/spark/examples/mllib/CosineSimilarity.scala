@@ -1,7 +1,9 @@
 package org.apache.spark.examples.mllib
 
+import org.apache.spark.mllib.linalg.Vector
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.linalg.distributed.{MatrixEntry, RowMatrix}
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 import scopt.OptionParser
 
@@ -21,6 +23,9 @@ import scopt.OptionParser
   *
   * bin/run-example mllib.CosineSimilarity \
   * --threshold 0.1 data/mllib/sample_svm_data.txt
+  * spark-submit --master spark://inode39:7077 --deploy-mode client --class org.apache.spark.examples.mllib.CosineSimilarity \
+  *   spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar \
+  *   --threshold 0.015 /rdma-spark-0.9.5/hibench/HiBench/SVD/Output/
   */
 object CosineSimilarity {
   case class Params(inputFile: String = null, threshold: Double = 0.1)
@@ -64,6 +69,7 @@ object CosineSimilarity {
       val values = line.split(' ').map(_.toDouble)
       Vectors.dense(values)
     }.cache()
+//    val rows : RDD[Vector] = sc.objectFile(params.inputFile).cache()
     val mat = new RowMatrix(rows)
 
     // Compute similar columns perfectly, with brute force.

@@ -42,72 +42,86 @@ public class Job1156653 {
 
 
         JavaPairRDD<Integer, Integer> tags = sc.textFile(tags1File)
-                .mapPartitionsToPair(new StringMapPartition(30000));
+                .mapPartitionsToPair(new StringMapPartition(30000L));
 
         JavaPairRDD<Integer, Integer> ratings = sc.textFile(ratingsFile)
-                .mapPartitionsToPair(new StringMapPartition(48000))
+                .mapPartitionsToPair(new StringMapPartition(48000L))
                 .reduceByKey(new ReducedFunction())
                 .cache();
 
         JavaPairRDD<Integer, Integer> reducedRatings = ratings
-                .mapPartitionsToPair(new IntegerMapPartition(13000))
+                .mapPartitionsToPair(new IntegerMapPartition(13000L))
                 .reduceByKey(new ReducedFunction())
-                .mapPartitionsToPair(new IntegerMapPartition(200));
+                .mapPartitionsToPair(new IntegerMapPartition(200L));
 
         JavaPairRDD<Integer, Integer> mappedRatings = ratings
-                .mapPartitionsToPair(new IntegerMapPartition(15000));
+                .mapPartitionsToPair(new IntegerMapPartition(15000L));
 //
 //        JavaPairRDD<Integer, Integer> tags = sc.textFile(tags1File)
 //                .mapPartitionsToPair(new StringMapPartition(30000));
 
         JavaPairRDD<Integer, Integer> join1 = tags.join(mappedRatings)
-                .mapPartitionsToPair(new Tuple2MapPartition(5000));
+                .mapPartitionsToPair(new Tuple2MapPartition(5000L));
 
         JavaPairRDD<Integer, Integer> result = reducedRatings.join(join1)
-                .mapPartitionsToPair(new Tuple2MapPartition(300));
+                .mapPartitionsToPair(new Tuple2MapPartition(300L));
 
         result.collect();
     }
 
+    private void sleepFunction(Long time) {
+        Long start = System.currentTimeMillis();
+        while (true) {
+            double a = 12332.234;
+            double b = 23545342.2342;
+            double c = a * b;
+            if ((System.currentTimeMillis() - start) > time) {
+                break;
+            }
+        }
+    }
+
     private static class StringMapPartition implements PairFlatMapFunction<Iterator<String>, Integer, Integer> {
 
-        private Integer sleepTime;
+        private Long sleepTime;
 
-        StringMapPartition(Integer sleepTime) {
+        StringMapPartition(Long sleepTime) {
             this.sleepTime = sleepTime;
         }
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<String> stringIterator) throws Exception {
-            Thread.sleep(sleepTime);
+            (new Job1156653()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
 
     private static class IntegerMapPartition implements PairFlatMapFunction<Iterator<Tuple2<Integer, Integer>>, Integer, Integer> {
-        private Integer sleepTime;
+        private Long sleepTime;
 
-        IntegerMapPartition(Integer sleepTime) {
+        IntegerMapPartition(Long sleepTime) {
             this.sleepTime = sleepTime;
         }
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Integer>> tuple2Iterator) throws Exception {
-            Thread.sleep(sleepTime);
+//            Thread.sleep(sleepTime);
+            (new Job1156653()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
 
     private static class Tuple2MapPartition implements PairFlatMapFunction<Iterator<Tuple2<Integer, Tuple2<Integer, Integer>>>, Integer, Integer> {
-        private Integer sleepTime;
+        private Long sleepTime;
 
-        Tuple2MapPartition(Integer sleepTime) {
+        Tuple2MapPartition(Long sleepTime) {
             this.sleepTime = sleepTime;
         }
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Tuple2<Integer, Integer>>> tuple2Iterator) throws Exception {
-            Thread.sleep(sleepTime);
+//            Thread.sleep(sleepTime);
+            (new Job1156653()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
