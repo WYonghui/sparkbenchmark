@@ -46,7 +46,8 @@ public class Job2079165 {
                 .mapPartitionsToPair(new PairFlatMapFunction<Iterator<String>, Integer, Integer>() {
                     @Override
                     public Iterator<Tuple2<Integer, Integer>> call(Iterator<String> stringIterator) throws Exception {
-                        Thread.sleep(10000);
+//                        Thread.sleep(10000);
+                        (new Job2079165()).sleepFunction(10000L);
                         return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
                     }
                 });
@@ -59,7 +60,8 @@ public class Job2079165 {
                 }).mapPartitionsToPair(new PairFlatMapFunction<Iterator<Tuple2<Integer, Integer>>, Integer, Integer>() {
                     @Override
                     public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Integer>> tuple2Iterator) throws Exception {
-                        Thread.sleep(12000);
+//                        Thread.sleep(12000);
+                        (new Job2079165()).sleepFunction(12000L);
                         return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
                     }
                 }).reduceByKey(new Function2<Integer, Integer, Integer>() {
@@ -105,7 +107,8 @@ public class Job2079165 {
                 .mapPartitionsToPair(new PairFlatMapFunction<Iterator<Tuple2<Integer, Tuple2<Tuple2<Integer, Integer>, Integer>>>, Integer, Integer>() {
                     @Override
                     public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Tuple2<Tuple2<Integer, Integer>, Integer>>> tuple2Iterator) throws Exception {
-                        Thread.sleep(8000);
+//                        Thread.sleep(8000);
+                        (new Job2079165()).sleepFunction(8000L);
                         return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
                     }
                 });
@@ -114,13 +117,28 @@ public class Job2079165 {
                 .mapPartitionsToPair(new PairFlatMapFunction<Iterator<Tuple2<Integer, Tuple2<Tuple2<Integer, Integer>, Integer>>>, Integer, Integer>() {
                     @Override
                     public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Tuple2<Tuple2<Integer, Integer>, Integer>>> tuple2Iterator) throws Exception {
-                        Thread.sleep(2000L);
+//                        Thread.sleep(2000L);
+                        (new Job2079165()).sleepFunction(2000L);
                         return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
                     }
                 });
 
         result.collect();
 
+    }
+
+    private void sleepFunction(Long time) throws InterruptedException {
+        Long start = System.currentTimeMillis();
+        while (true) {
+            double a = 12332.234;
+            double b = 23545342.2342;
+            double c = a * b;
+            if ((System.currentTimeMillis() - start) > time) {
+                break;
+            }
+        }
+
+        Thread.sleep(Math.round(time * 0.278));
     }
 
     private static class Tuple2PairFlatMap implements PairFlatMapFunction<Iterator<Tuple2<Integer, Integer>>, Integer, Integer> {
@@ -133,7 +151,8 @@ public class Job2079165 {
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Integer>> tuple2Iterator) throws Exception {
-            Thread.sleep(sleepTime);
+//            Thread.sleep(sleepTime);
+            (new Job2079165()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
@@ -148,7 +167,7 @@ public class Job2079165 {
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<String> stringIterator) throws Exception {
-            Thread.sleep(sleepTime);
+            (new Job2079165()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }

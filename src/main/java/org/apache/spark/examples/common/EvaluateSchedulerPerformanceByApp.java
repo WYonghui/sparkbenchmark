@@ -44,7 +44,7 @@ public class EvaluateSchedulerPerformanceByApp {
             HashMap<String, Set<String>> stageToFathers = new HashMap<>();
             Set<String> maybeResultStages = new HashSet<>(); // 每一个stage都可能是result stage
             Set<String> notResultStages = new HashSet<>(); // 被其他阶段依赖的stage一定不是result stage
-//             分析每个stage的依赖
+            // 分析每个stage的依赖
             for (int i = 1; i < items.length; i++) {
                 String[] stages = items[i].split("_");
 

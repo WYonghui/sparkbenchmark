@@ -70,7 +70,7 @@ public class Job1077388 {
         result.collect();
     }
 
-    private void sleepFunction(Long time) {
+    private void sleepFunction(Long time) throws InterruptedException {
         Long start = System.currentTimeMillis();
         while (true) {
             double a = 12332.234;
@@ -80,6 +80,8 @@ public class Job1077388 {
                 break;
             }
         }
+
+//        Thread.sleep(Math.round(time * 0.278));
     }
 
     private static class StringMapPartition implements PairFlatMapFunction<Iterator<String>, Integer, Integer> {

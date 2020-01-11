@@ -43,21 +43,21 @@ public class Job3001408 {
         String tags2File = args[4];
 
         JavaPairRDD<Integer, Integer> ratings = sc.textFile(ratingsFile)
-                .mapPartitionsToPair(new StringMapPartition(6000))
+                .mapPartitionsToPair(new StringMapPartition(12000))
                 .reduceByKey(new ReducedFunction())
                 .cache();
 
-        JavaPairRDD<Integer, Integer> tags1 = sc.textFile(tags1File)
-                .mapPartitionsToPair(new StringMapPartition(2000))
+        JavaPairRDD<Integer, Integer> tags1 = sc.textFile(tags2File)
+                .mapPartitionsToPair(new StringMapPartition(6000))
                 .reduceByKey(new ReducedFunction());
 
         JavaPairRDD<Integer, Integer> join1 = tags1.join(ratings)
-                .mapPartitionsToPair(new Tuple2MapPartition(5000))
+                .mapPartitionsToPair(new Tuple2MapPartition(8000))
                 .reduceByKey(new ReducedFunction())
                 .mapPartitionsToPair(new IntegerMapPartition(3000));
 
-        JavaPairRDD<Integer, Integer> tags2 = sc.textFile(tags2File)
-                .mapPartitionsToPair(new StringMapPartition(3000));
+        JavaPairRDD<Integer, Integer> tags2 = sc.textFile(tags1File)
+                .mapPartitionsToPair(new StringMapPartition(18000));
 
         JavaPairRDD<Integer, Integer> join2 = tags2.join(ratings)
                 .mapPartitionsToPair(new Tuple2MapPartition(3000));
@@ -68,6 +68,19 @@ public class Job3001408 {
         result.collect();
     }
 
+    private void sleepFunction(Integer time) throws InterruptedException {
+        Long start = System.currentTimeMillis();
+        while (true) {
+            double a = 12332.234;
+            double b = 23545342.2342;
+            double c = a * b;
+            if ((System.currentTimeMillis() - start) > time) {
+                break;
+            }
+        }
+
+        Thread.sleep(Math.round(time * 0.278));
+    }
 
     private static class StringMapPartition implements PairFlatMapFunction<Iterator<String>, Integer, Integer> {
 
@@ -79,7 +92,8 @@ public class Job3001408 {
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<String> stringIterator) throws Exception {
-            Thread.sleep(sleepTime);
+//            Thread.sleep(sleepTime);
+            (new Job3001408()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
@@ -93,7 +107,7 @@ public class Job3001408 {
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Integer>> tuple2Iterator) throws Exception {
-            Thread.sleep(sleepTime);
+            (new Job3001408()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }
@@ -107,7 +121,7 @@ public class Job3001408 {
 
         @Override
         public Iterator<Tuple2<Integer, Integer>> call(Iterator<Tuple2<Integer, Tuple2<Integer, Integer>>> tuple2Iterator) throws Exception {
-            Thread.sleep(sleepTime);
+            (new Job3001408()).sleepFunction(sleepTime);
             return (new ArrayList<Tuple2<Integer, Integer>>()).iterator();
         }
     }

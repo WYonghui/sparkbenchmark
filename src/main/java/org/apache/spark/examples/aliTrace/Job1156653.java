@@ -5,6 +5,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.sources.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.Tuple2;
@@ -69,7 +70,7 @@ public class Job1156653 {
         result.collect();
     }
 
-    private void sleepFunction(Long time) {
+    private void sleepFunction(Long time) throws InterruptedException {
         Long start = System.currentTimeMillis();
         while (true) {
             double a = 12332.234;
@@ -79,6 +80,8 @@ public class Job1156653 {
                 break;
             }
         }
+
+//        Thread.sleep(Math.round(time * 0.278));
     }
 
     private static class StringMapPartition implements PairFlatMapFunction<Iterator<String>, Integer, Integer> {

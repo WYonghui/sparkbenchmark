@@ -43,21 +43,21 @@ object ConnectedComponentsExample {
     val graph = GraphLoader.edgeListFile(sc, args(1))
 
     // Find the connected components
-//    val cc = graph.connectedComponents().vertices
-    graph.connectedComponents()
+    val cc = graph.connectedComponents().vertices
+//    graph.connectedComponents()
     // Join the connected components with the usernames
 //    val users = sc.textFile("data/graphx/users.txt").map { line =>
-//    val users = sc.textFile(args(2)).map { line =>
-//
-//      val fields = line.split(",")
-//      (fields(0).toLong, fields(1))
-//    }
-//    val ccByUsername = users.join(cc).map {
-//      case (id, (username, cc)) => (username, cc)
-//    }
-    // Print the result
-//    println(ccByUsername.collect().mkString("\n"))
-    // $example off$
+    val users = sc.textFile(args(2)).map { line =>
+
+      val fields = line.split(",")
+      (fields(0).toLong, fields(1))
+    }
+    val ccByUsername = users.join(cc).map {
+      case (id, (username, cc)) => (username, cc)
+    }
+//     Print the result
+    println(ccByUsername.collect().mkString("\n"))
+//     $example off$
     spark.stop()
   }
 }
