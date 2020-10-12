@@ -2,20 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b522fdd-ffdc-4880-af65-4e58134dfc60" name="Default Changelist" comment="modify wordcount">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077229.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077388.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1156653.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job170673.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1981074.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1981328.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2079165.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job20815.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2239033.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job3001408.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job898272.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/RandomGenerate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/SearchMultiChildrenJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/Job1077229.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/junitgenerator-prj-settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/GetJobInformation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/SubmittingJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/JobCommandParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedTaskSlots.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/Stage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/TaskSlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/DAGScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/DAGSchedulerForTelescope.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/Scheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndBranchNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndEdgeNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_cli_commons_cli_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_cli_commons_cli_1_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_library_2_11_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_library_2_11_12.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_25.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_16.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_simple_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark-benchmark.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spark-benchmark.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/RandomGenerate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/RandomGenerate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/EvaluateSchedulerPerformanceByApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/EvaluateSchedulerPerformanceByApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,98 +56,66 @@
     <session id="-928039726">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="31" />
-          <entry key="project.open.time.0" value="6" />
-          <entry key="project.open.time.1" value="7" />
+          <entry key="project.closed" value="50" />
+          <entry key="project.open.time.0" value="12" />
+          <entry key="project.open.time.1" value="8" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.7" value="7" />
-          <entry key="project.open.time.8" value="5" />
-          <entry key="project.opened" value="32" />
+          <entry key="project.open.time.5" value="7" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.7" value="9" />
+          <entry key="project.open.time.8" value="8" />
+          <entry key="project.opened" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="8" />
-          <entry key="java" value="93" />
-          <entry key="xml" value="5" />
+          <entry key="class" value="14" />
+          <entry key="java" value="272" />
+          <entry key="properties" value="10" />
+          <entry key="scala" value="44" />
+          <entry key="xml" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="8" />
-          <entry key="JAVA" value="93" />
-          <entry key="XML" value="5" />
+          <entry key="CLASS" value="14" />
+          <entry key="JAVA" value="272" />
+          <entry key="Properties" value="10" />
+          <entry key="Scala" value="44" />
+          <entry key="XML" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="Scala Console" value="10" />
           <entry key="dummy" value="3" />
-          <entry key="java" value="22654" />
-          <entry key="txt" value="116" />
-          <entry key="xml" value="58" />
+          <entry key="java" value="48053" />
+          <entry key="properties" value="64" />
+          <entry key="scala" value="983" />
+          <entry key="txt" value="120" />
+          <entry key="xml" value="131" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="22654" />
-          <entry key="PLAIN_TEXT" value="119" />
-          <entry key="XML" value="58" />
+          <entry key="JAVA" value="48053" />
+          <entry key="PLAIN_TEXT" value="123" />
+          <entry key="Properties" value="64" />
+          <entry key="Scala" value="993" />
+          <entry key="XML" value="131" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1156653.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="class#StringMapPartition#0;class#Job1156653#0" />
-                <element signature="method#call#0;class#StringMapPartition#0;class#Job1156653#0" />
-                <element signature="class#IntegerMapPartition#0;class#Job1156653#0" />
-                <element signature="class#Tuple2MapPartition#0;class#Job1156653#0" />
-                <element signature="class#ReducedFunction#0;class#Job1156653#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2239033.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="class#StringMapPartition#0;class#Job2239033#0" />
-                <element signature="method#call#0;class#StringMapPartition#0;class#Job2239033#0" />
-                <element signature="class#IntegerMapPartition#0;class#Job2239033#0" />
-                <element signature="class#Tuple2MapPartition#0;class#Job2239033#0" />
-                <element signature="class#ReducedFunction#0;class#Job2239033#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job898272.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/DAGSchedulerForTelescope.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1155">
-              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="class#StringMapPartition#0;class#Job898272#0" />
-                <element signature="method#call#0;class#StringMapPartition#0;class#Job898272#0" />
-                <element signature="class#IntegerMapPartition#0;class#Job898272#0" />
-                <element signature="class#Tuple2MapPartition#0;class#Job898272#0" />
-                <element signature="class#ReducedFunction#0;class#Job898272#0" />
-              </folding>
+            <state relative-caret-position="165">
+              <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
             </state>
           </provider>
         </entry>
@@ -144,7 +125,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Package Object" />
+        <option value="Scala Object" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -153,6 +137,12 @@
       <find>ParseAliData</find>
       <find>function2</find>
       <find>union`</find>
+      <find>countve</find>
+      <find>ldaoptimizer</find>
+      <find>inished training LDA model</find>
+      <find>topics:</find>
+      <find>countvect</find>
+      <find>commons</find>
     </findStrings>
     <replaceStrings>
       <replace>MaxSchedulableStages</replace>
@@ -165,35 +155,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/ml/LDAExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/ml/DecisionTreeExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/ml/LogisticRegressionExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/mllib/JavaKmeansExample.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/LDAExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/LDAExample_2.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/HelloWorld.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/MaxSchedulabeStages.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/MaxSchedulableStages.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/TestSparkJoin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/SparkPi.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/WordFilterAndCount.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/WordCountTwice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/PageRank.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/WordCount.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/JavaALS.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/TestRDDPersist.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/Job1077229.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/SearchMultiChildrenJobs.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/Job1077388.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077388.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/J1981074.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2079165.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1981074.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseSVDGeneratorData.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/CosineSimilarity.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/LDAExample_modified.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParsePokecSocialNetwork.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/graphx/ConnectedComponentsExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/graphx/PageRankExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/DenseKMeans.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/DecisionTreeClassificationExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/GaussianMixtureExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/RankingMetricsExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/SleepFunctionSet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/SleepFunctionSet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseStageAndBranch.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job3001408.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job20815.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2079165.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job170673.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077229.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077388.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1156653.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1981328.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2239033.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job898272.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/RandomGenerate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077229_2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077229.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2239033.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/TreeMapTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/TaskSlot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/JobCommandLine.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/JobCommandParserTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/JobCommandParser.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedListTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/Task.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/Stage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedTaskSlotsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedTaskSlots.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/Scheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/DAGScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/DAGSchedulerForTelescope.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/GetJobInformation.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/SubmittingJob.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndEdgeNumber.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndBranchNumber.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/EvaluateSchedulerPerformanceByApp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/MaxSchedulableStages.java" />
       </list>
     </option>
   </component>
@@ -206,8 +218,8 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../maven/apache-maven-3.6.0" />
-        <option name="userSettingsFile" value="E:\software\maven\apache-maven-3.6.0\conf\settings.xml" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../maven/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="E:\software\maven\apache-maven-3.5.4\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -227,7 +239,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="85" />
     <option name="y" value="22" />
     <option name="width" value="1382" />
@@ -238,9 +250,11 @@
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <hideEmptyPackages ProjectPane="false" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -287,13 +301,61 @@
             <path>
               <item name="sparkbenchmark" type="b2602c69:ProjectViewProjectNode" />
               <item name="sparkbenchmark" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="aliTrace" type="462c0819:PsiDirectoryNode" />
+              <item name="MultistageEvaluation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkbenchmark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkbenchmark" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="aliTrace" type="462c0819:PsiDirectoryNode" />
+              <item name="MultistageEvaluation" type="462c0819:PsiDirectoryNode" />
+              <item name="scheduler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkbenchmark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkbenchmark" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkbenchmark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkbenchmark" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkbenchmark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkbenchmark" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkbenchmark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkbenchmark" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sparkbenchmark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sparkbenchmark" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -301,10 +363,19 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.scala.settings.ScalaProjectSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.apache.spark.examples.mllib" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.apache.spark.examples.common" />
+      <recent name="org.apache.spark.examples.mllib" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -318,16 +389,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SearchMultiChildrenJobs">
-    <configuration name="HelloWorld" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.HelloWorld" />
+  <component name="RunManager" selected="Application.MaxSchedulableStages">
+    <configuration name="EvaluateSchedulerPerformanceByApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.common.EvaluateSchedulerPerformanceByApp" />
       <module name="spark-benchmark" />
+      <option name="PROGRAM_PARAMETERS" value="F:\telescope\测试\阿里巴巴数据集\jobInfo.csv F:\telescope\测试\阿里巴巴数据集\schedulerOverhead.csv" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JavaALS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.JavaALS" />
+    <configuration name="GetJobInformation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.aliTrace.MultistageEvaluation.GetJobInformation" />
+      <module name="spark-benchmark" />
+      <option name="PROGRAM_PARAMETERS" value="-s F:\telescope\测试\阿里cluster&quot; &quot;data测试\batch_task.csv -d F:\telescope\测试\阿里cluster&quot; &quot;data测试\指定job的信息\ -n 20 -j j_2000916" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelloWorld" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.HelloWorld" />
       <module name="spark-benchmark" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -336,30 +416,42 @@
     <configuration name="MaxSchedulableStages" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.common.MaxSchedulableStages" />
       <module name="spark-benchmark" />
-      <option name="PROGRAM_PARAMETERS" value="E:\download\ali-cluster-Data\batch_task.csv E:\download\ali-cluster-Data\maxSchedulableStages.csv" />
+      <option name="PROGRAM_PARAMETERS" value="F:\telescope\测试\阿里巴巴数据集\batch_task.csv F:\telescope\测试\阿里巴巴数据集\maxParallelStages.csv" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SearchMultiChildrenJobs" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.common.SearchMultiChildrenJobs" />
+    <configuration name="ParseVertexAndBranchNumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.common.ParseVertexAndBranchNumber" />
       <module name="spark-benchmark" />
-      <option name="PROGRAM_PARAMETERS" value="E:\download\ali-cluster-Data\jobInfo.csv E:\download\ali-cluster-Data\jobInfo_selectMultiChildren.csv" />
+      <option name="PROGRAM_PARAMETERS" value="F:\telescope\测试\阿里巴巴数据集\batch_task.csv F:\telescope\测试\阿里巴巴数据集\vertexAndBranchNumber.csv" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubmittingJob" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.apache.spark.examples.aliTrace.MultistageEvaluation.SubmittingJob" />
+      <module name="spark-benchmark" />
+      <option name="PROGRAM_PARAMETERS" value="-j F:\telescope\测试\阿里cluster&quot; &quot;data测试\指定job的信息\j_1077229-5.csv -c 480 -p 600 -s telescope" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.HelloWorld" />
-      <item itemvalue="Application.JavaALS" />
+      <item itemvalue="Application.GetJobInformation" />
+      <item itemvalue="Application.SubmittingJob" />
+      <item itemvalue="Application.ParseVertexAndBranchNumber" />
+      <item itemvalue="Application.EvaluateSchedulerPerformanceByApp" />
       <item itemvalue="Application.MaxSchedulableStages" />
-      <item itemvalue="Application.SearchMultiChildrenJobs" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SearchMultiChildrenJobs" />
         <item itemvalue="Application.MaxSchedulableStages" />
-        <item itemvalue="Application.JavaALS" />
+        <item itemvalue="Application.EvaluateSchedulerPerformanceByApp" />
+        <item itemvalue="Application.ParseVertexAndBranchNumber" />
+        <item itemvalue="Application.SubmittingJob" />
+        <item itemvalue="Application.GetJobInformation" />
       </list>
     </recent_temporary>
   </component>
@@ -377,24 +469,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19296375" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4934924" visible="true" weight="0.20469083" />
+      <window_info id="Structure" order="1" sideWeight="0.5065076" side_tool="true" weight="0.19722815" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Learn" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2635575" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.324295" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27006507" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.53036875" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.38611713" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -418,88 +510,231 @@
     <MESSAGE value="modify wordcount" />
     <option name="LAST_COMMIT_MESSAGE" value="modify wordcount" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/GetJobInformation.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedTaskSlotsTest.java</url>
+          <line>35</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndBranchNumber.java</url>
+          <line>216</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndBranchNumber.java</url>
+          <line>115</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-mllib_2.11/2.1.4-SNAPSHOT/spark-mllib_2.11-2.1.4-SNAPSHOT.jar!/org/apache/spark/mllib/recommendation/ALS.class">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/DenseKMeans.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/DecisionTreeClassificationExample.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/CosineSimilarity.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
-          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
+          <caret line="27" column="69" lean-forward="true" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../jdk1.8.0_191/src.zip!/java/util/HashSet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/JavaALS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3129">
-          <caret line="181" selection-start-line="181" selection-end-line="181" />
+        <state relative-caret-position="704">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../jdk1.8.0_191/src.zip!/java/util/HashMap.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/RankingMetricsExample.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/mllib/GaussianMixtureExample.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10794">
-          <caret line="556" selection-start-line="556" selection-end-line="556" />
+        <state relative-caret-position="294">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/MaxSchedulableStages.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/graphx/TriangleCountingExample.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+        <state relative-caret-position="630">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../jdk1.8.0_191/src.zip!/java/lang/Object.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseSVDGeneratorData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        <state relative-caret-position="189">
+          <caret line="18" column="94" lean-forward="true" selection-start-line="18" selection-start-column="94" selection-end-line="18" selection-end-column="94" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/ALSTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParsePokecSocialNetwork.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-244">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="231">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/HelloWorld.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/SleepFunctionSet.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job170673.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job3001408.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="70" selection-start-line="70" selection-end-line="82" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2079165.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1932">
+          <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job898272.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2239033.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="90" column="5" lean-forward="true" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1156653.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077388.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/RandomGenerate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedTaskSlotsTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/Test.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/TreeMapTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/ALSDataParse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/JobCommandLine.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/JobCommandParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/JobCommandParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="43" column="99" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="23" column="50" lean-forward="true" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/TaskSlot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/Stage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../jdk1.8.0_191/src.zip!/java/util/ArrayDeque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="284" selection-start-line="284" selection-end-line="284" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedTaskSlots.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/org/apache/spark/examples/graphx/ConnectedComponentsExample.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/WordCountTwice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedTaskSlotsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="2150">
+          <caret line="229" column="18" lean-forward="true" selection-start-line="229" selection-start-column="18" selection-end-line="229" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.1.0/spark-sql_2.11-2.1.0.jar!/org/apache/spark/sql/SparkSession.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077229.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="76" column="50" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-mllib_2.11/2.1.0/spark-mllib_2.11-2.1.0.jar!/org/apache/spark/mllib/recommendation/ALS.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/SparkPi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/TestSparkJoin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="19" column="61" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+        <state relative-caret-position="1386">
+          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -510,232 +745,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/WordFilterAndCount.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/Scheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/DAGScheduler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
-          <caret line="33" column="37" selection-start-line="32" selection-start-column="4" selection-end-line="33" selection-end-column="37" />
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../scala/scala-2.11.12/lib/scala-library.jar!/scala/Tuple2.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/common/SortedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="70" lean-forward="true" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/GetJobInformation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
-          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/JavaALS.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndEdgeNumber.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+        <state relative-caret-position="147">
+          <caret line="12" column="123" selection-start-line="12" selection-start-column="123" selection-end-line="12" selection-end-column="123" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/PageRank.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/EvaluateSchedulerPerformance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="55" column="27" selection-start-line="54" selection-start-column="12" selection-end-line="55" selection-end-column="27" />
+        <state relative-caret-position="-3276">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/WordCountTwice.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/EvaluateSchedulerPerformanceByApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="58" column="47" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="47" />
+        <state relative-caret-position="321">
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/TestRDDPersist.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseStageAndBranch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1806">
-          <caret line="102" column="49" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/ALSDataParse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-979">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/SearchMultiChildrenJobs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="37" column="65" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+        <state relative-caret-position="-307">
+          <caret line="153" column="9" selection-start-line="153" selection-start-column="9" selection-end-line="153" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseAliData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="13" column="87" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="13" selection-end-column="87" />
+        <state relative-caret-position="-3100">
+          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0.jar!/org/apache/spark/api/java/function/PairFlatMapFunction.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/ParseVertexAndBranchNumber.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="3318">
+          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2079165.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/common/MaxSchedulableStages.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="473">
+          <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job20815.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/SubmittingJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1118">
-          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+        <state relative-caret-position="372">
+          <caret line="36" column="46" lean-forward="true" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job20815#0" />
-            <element signature="method#call#0;class#StringMapPartition#0;class#Job20815#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job20815#0" />
-            <element signature="class#ReducedFunction#0;class#Job20815#0" />
+            <element signature="method#init#0;class#SubmittingJob#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job170673.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/MultistageEvaluation/scheduler/DAGSchedulerForTelescope.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="71" column="67" lean-forward="true" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job170673#0" />
-            <element signature="method#call#0;class#StringMapPartition#0;class#Job170673#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job170673#0" />
-            <element signature="class#Tuple2MapPartition#0;class#Job170673#0" />
-            <element signature="class#ReducedFunction#0;class#Job170673#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077388.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="28" column="86" lean-forward="true" selection-start-line="28" selection-start-column="86" selection-end-line="28" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1981074.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job1981074#0" />
-            <element signature="method#call#0;class#StringMapPartition#0;class#Job1981074#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job1981074#0" />
-            <element signature="class#Tuple2MapPartition#0;class#Job1981074#0" />
-            <element signature="class#ReducedFunction#0;class#Job1981074#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1981328.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-157">
-          <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/RandomGenerate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077229_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job3001408.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job3001408#0" />
-            <element signature="method#call#0;class#StringMapPartition#0;class#Job3001408#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job3001408#0" />
-            <element signature="class#Tuple2MapPartition#0;class#Job3001408#0" />
-            <element signature="class#ReducedFunction#0;class#Job3001408#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1077229.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job1077229#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job1077229#0" />
-            <element signature="class#Tuple2MapPartition#0;class#Job1077229#0" />
-            <element signature="class#ReducedFunction#0;class#Job1077229#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job1156653.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job1156653#0" />
-            <element signature="method#call#0;class#StringMapPartition#0;class#Job1156653#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job1156653#0" />
-            <element signature="class#Tuple2MapPartition#0;class#Job1156653#0" />
-            <element signature="class#ReducedFunction#0;class#Job1156653#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job2239033.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job2239033#0" />
-            <element signature="method#call#0;class#StringMapPartition#0;class#Job2239033#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job2239033#0" />
-            <element signature="class#Tuple2MapPartition#0;class#Job2239033#0" />
-            <element signature="class#ReducedFunction#0;class#Job2239033#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/spark/examples/aliTrace/Job898272.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#StringMapPartition#0;class#Job898272#0" />
-            <element signature="method#call#0;class#StringMapPartition#0;class#Job898272#0" />
-            <element signature="class#IntegerMapPartition#0;class#Job898272#0" />
-            <element signature="class#Tuple2MapPartition#0;class#Job898272#0" />
-            <element signature="class#ReducedFunction#0;class#Job898272#0" />
-          </folding>
+        <state relative-caret-position="165">
+          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
         </state>
       </provider>
     </entry>
@@ -797,6 +915,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -826,10 +945,25 @@
           </splitter-proportions>
         </settings>
       </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
     </states>
   </component>
   <component name="mavenExecuteGoalHistory">
     <option value="$PROJECT_DIR$" />
+    <option value="clean package -Dmaven.test.skip=true" />
+    <option value="clean package" />
+    <option value="clean scala:compile package -DskipTests" />
+    <option value="clean" />
     <option value="clean package -DskipTests" />
     <option value="clean install -DskipTests" />
   </component>

@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.*;
 
 /**
+ *
  * java -cp spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.spark.examples.common.EvaluateSchedulerPerformanceByApp \
      jobInfo.csv schedulerPerformance.csv
  */
@@ -16,7 +17,7 @@ public class EvaluateSchedulerPerformanceByApp {
     public static void main(String[] args) throws Exception {
 
         if (args.length < 2) {
-            LOG.info("Usage: EvaluateSchedulerPerformance <jobInfo> <schedulerPerformance>");
+            LOG.info("Usage: EvaluateSchedulerPerformance <jobInfo> <output.csv>");
             System.exit(-1);
         }
 
