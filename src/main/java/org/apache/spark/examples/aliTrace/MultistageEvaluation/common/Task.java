@@ -6,7 +6,7 @@ package org.apache.spark.examples.aliTrace.MultistageEvaluation.common;
  * @Description:
  */
 public class Task {
-    int priority;
+    double priority;
     public int duration;
     public int finishTime;
 
@@ -20,7 +20,7 @@ public class Task {
         this.duration = duration;
     }
 
-    public Task(int priority, int duration) {
+    public Task(double priority, int duration) {
         this.priority = priority;
         this.duration = duration;
     }

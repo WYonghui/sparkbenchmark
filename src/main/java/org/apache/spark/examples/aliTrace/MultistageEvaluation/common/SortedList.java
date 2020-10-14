@@ -1,5 +1,7 @@
 package org.apache.spark.examples.aliTrace.MultistageEvaluation.common;
 
+import scala.tools.nsc.doc.model.Val;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -9,18 +11,18 @@ import java.util.LinkedList;
  * @author yonghui
  * @since 2020-09-30
  */
-public class SortedList extends LinkedList<SortedList.Entry<String, Integer>> {
+public class SortedList<Key extends Comparable<? super Key>, Value extends Comparable<? super Value>> extends LinkedList<SortedList.Entry<Key, Value>> {
 
     @Override
-    public boolean add(Entry<String, Integer> entry) {
+    public boolean add(Entry<Key, Value> entry) {
         if (super.isEmpty()) {
             super.add(entry);
         } else {
-            if (entry.value > super.getLast().value) { // 添加到末尾
+            if (entry.value.compareTo(super.getLast().value) > 0) { // 添加到末尾
                 super.add(entry);
             } else {
                 for (int i = 0; i < super.size(); i++) { // 添加到中间某个位置，插入后保证链表有序
-                    if (super.get(i).value >= entry.value) {
+                    if (super.get(i).value.compareTo(entry.value) >= 0) {
                         super.add(i, entry);
                         break;
 
@@ -32,31 +34,15 @@ public class SortedList extends LinkedList<SortedList.Entry<String, Integer>> {
         return true;
     }
 
-    public boolean add(String stageId, Integer value) {
-        Entry<String, Integer> entry = new Entry<>(stageId, value);
-        if (super.isEmpty()) {
-            super.add(entry);
-        } else {
-            if (entry.value > super.getLast().value) { // 添加到末尾
-                super.add(entry);
-            } else {
-                for (int i = 0; i < super.size(); i++) { // 添加到中间某个位置，插入后保证链表有序
-                    if (super.get(i).value >= entry.value) {
-                        super.add(i, entry);
-                        break;
-
-                    }
-                }
-            }
-
-        }
-        return true;
+    public boolean add(Key stageId, Value value) {
+        Entry<Key, Value> entry = new Entry<>(stageId, value);
+        return add(entry);
     }
 
-    public boolean containsId(String id) {
-        Iterator<Entry<String, Integer>> iterator = super.iterator();
+    public boolean containsId(Key id) {
+        Iterator<Entry<Key, Value>> iterator = super.iterator();
         while (iterator.hasNext()) {
-            Entry<String, Integer> entry = iterator.next();
+            Entry<Key, Value> entry = iterator.next();
             if (entry.id.equals(id)) {
                 return true;
             }
@@ -64,11 +50,23 @@ public class SortedList extends LinkedList<SortedList.Entry<String, Integer>> {
         return false;
     }
 
+    public boolean removeByKey(Key id) {
+
+        boolean ret = false;
+        for (int i = 0; i < super.size(); i++) {
+            if (super.get(i).id.equals(id)) {
+                super.remove(i);
+                ret = true;
+                break;
+            }
+        }
+
+        return ret;
+    }
+
     public static class Entry<X, Y> {
         X id;
         Y value;
-//        Entry<X, Y> next;
-//        Entry<X, Y> prev;
 
         public Entry() {
         }

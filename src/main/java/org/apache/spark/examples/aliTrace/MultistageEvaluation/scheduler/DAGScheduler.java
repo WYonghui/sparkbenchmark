@@ -21,7 +21,7 @@ public class DAGScheduler implements Scheduler{
     Set<String> finishedStages;
     List<String> readyStages;
     Map<String, List<Task>> taskSetsByStageId;
-    SortedList stageForStartingTime;
+    SortedList<String, Integer> stageForStartingTime;
     SortedTaskSlots taskSlots;
     Integer parallelism;
 
@@ -31,7 +31,7 @@ public class DAGScheduler implements Scheduler{
         this.finishedStages = new HashSet<>();
         this.readyStages = new ArrayList<>();
         this.taskSetsByStageId = new HashMap<>();
-        this.stageForStartingTime = new SortedList();
+        this.stageForStartingTime = new SortedList<String, Integer>();
 
         this.taskSlots = new SortedTaskSlots(coreNum);
         this.parallelism = parallelism;

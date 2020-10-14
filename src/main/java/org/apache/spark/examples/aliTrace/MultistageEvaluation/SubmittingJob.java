@@ -16,7 +16,8 @@ import java.util.*;
 
 /**
  * Submitting a job to the cluster, the scheduler proposes a scheduling plan and calculates the job completion time.
- * java -cp spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.spark.examples.aliTrace.MultistageEvaluation.SubmittingJob -j F:\\telescope\\测试\\阿里cluster" "data测试\\指定job的信息\\j_1077229.csv -c 480 -p 490 -s spark
+ * java -cp spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.spark.examples.aliTrace.MultistageEvaluation.SubmittingJob \
+     -j "F:\telescope\测试\阿里巴巴数据集\指定job的信息\j_2372877-50.csv"  -c 480 -p 600 -s telescope -w 0.6
  * @author yonghui
  * @date 2020-09-29
  */
@@ -27,14 +28,14 @@ public class SubmittingJob {
     String resultStage; // 拥有最多阶段数的job的result stage
     Scheduler dagScheduler;
 
-    public SubmittingJob(String clusterType, Integer coreNum, Integer parallelism) {
+    public SubmittingJob(String clusterType, Integer coreNum, Integer parallelism, Double weight) {
         this.stageInfo = new HashMap<>();
         switch (clusterType.toLowerCase()) {
             case "spark":
                 this.dagScheduler = new DAGScheduler(stageInfo, coreNum, parallelism);
                 break;
             case "telescope":
-                this.dagScheduler = new DAGSchedulerForTelescope(stageInfo, coreNum, parallelism);
+                this.dagScheduler = new DAGSchedulerForTelescope(stageInfo, coreNum, parallelism, weight);
                 break;
         }
 
@@ -121,14 +122,17 @@ public class SubmittingJob {
         JobCommandParser parser = new JobCommandParser("SubmittingJob");
         CommandLine commandLine = parser.parse(args);
 
-        String jobPath = commandLine.getOptionValue('j'); //确保job无环路
+        String jobPath = commandLine.getOptionValue('j');
         String clusterType = commandLine.getOptionValue('s');
         Integer coreNum = Integer.valueOf(commandLine.getOptionValue('c'));
         Integer parallelism = Integer.valueOf(commandLine.getOptionValue('p'));
+        Double weight = 0.5;
+        if (commandLine.hasOption('w'))
+            weight = Double.valueOf(commandLine.getOptionValue('w'));
 
         logger.info("SubmittingJob -j {} \\", jobPath);
         logger.info("-s {} -c {} -p {}", clusterType, coreNum, parallelism);
-        SubmittingJob submit = new SubmittingJob(clusterType, coreNum, parallelism);
+        SubmittingJob submit = new SubmittingJob(clusterType, coreNum, parallelism, weight);
         submit.init(jobPath);
         submit.submitJob();
 

@@ -16,26 +16,30 @@ import java.util.*;
 public class DAGSchedulerForTelescope implements Scheduler{
     private static final Logger logger = LoggerFactory.getLogger(DAGSchedulerForTelescope.class);
 
-    Map<String, ArrayList<String>> stageDependencies;
-    Map<String, ArrayList<String>> childStages;
-    Set<String> finishedStages;
-    List<String> readyStages;
-    Map<String, List<Task>> taskSetsByStageId;
-    Map<String, Integer> stageForStartingTime;
-    SortedList readyStagePriorityList;
-    SortedTaskSlots taskSlots;
-    Integer parallelism;
+    private Map<String, ArrayList<String>> stageDependencies;
+    private Map<String, ArrayList<String>> childStages;
+    private Set<String> finishedStages;
+    private List<String> readyStages;
+    private Map<String, List<Task>> taskSetsByStageId;
+    private SortedList<String, Integer> stageForStartingTime;         // 阶段中任务可以开始执行的时间,从小到大排序
+//    private Map<String, Double> readyStagePriorityList;        // 阶段按优先级从低到高排序的等待队列
+    private Map<String, Double> stagePriorities;                      // 所有阶段的优先级
+    private SortedTaskSlots taskSlots;
+    private Integer parallelism;
+    private Double weight;
 
-    public DAGSchedulerForTelescope(Map<String, ArrayList<String>> stageInfo, Integer coreNum, Integer parallelism) {
+    public DAGSchedulerForTelescope(Map<String, ArrayList<String>> stageInfo, Integer coreNum, Integer parallelism, Double weight) {
         this.stageDependencies = stageInfo;
         this.finishedStages = new HashSet<>();
         this.readyStages = new ArrayList<>();
         this.taskSetsByStageId = new HashMap<>();
-        this.stageForStartingTime = new HashMap<>();
-        this.readyStagePriorityList = new SortedList();
+        this.stageForStartingTime = new SortedList<>();
+//        this.readyStagePriorityList = new HashMap<>();
+        this.stagePriorities = new HashMap<>();
 
         this.taskSlots = new SortedTaskSlots(coreNum);
         this.parallelism = parallelism;
+        this.weight = weight;
     }
 
     public void findChildStages(String resultStage) {
@@ -67,11 +71,11 @@ public class DAGSchedulerForTelescope implements Scheduler{
     }
 
     /**
-     * 计算stage的子阶段数量，作为stage的优先级
+     * 计算stage的后代阶段数量，作为stage的优先级
      * @param stage 目标stage
-     * @return stage的子阶段数量
+     * @return stage的后代阶段数量
      */
-    private int getChildNumber(String stage) {
+    private int getDescendantNumber(String stage) {
         int childNum = 0;
         Set<String> visited = new HashSet<>();
 
@@ -97,6 +101,54 @@ public class DAGSchedulerForTelescope implements Scheduler{
     }
 
     /**
+     * 根据影响力计算公式计算每个阶段的影响力
+     * 影响力计算公式为深度与子阶段数量的加权平均加上子阶段的最大影响力
+     * @param resultStage result stage
+     * @return stage的影响力
+     */
+    private void getStageInfluence(String resultStage) {
+
+        stagePriorities.put(resultStage, 1.0); // result stage的influence设定为1
+        Map<String, Integer> stageDepth = new HashMap<>();
+        stageDepth.put(resultStage, 1);
+
+        // bfd设定所有阶段的influence
+        Deque<String> waitingStages = new LinkedList<>();
+        waitingStages.add(resultStage);
+        while (!waitingStages.isEmpty()) {
+            String stage = waitingStages.removeFirst();
+            List<String> parents = stageDependencies.get(stage);
+            if (parents != null) {
+                for (String parent: parents) {
+                    if (stagePriorities.containsKey(parent)) {
+                        continue;
+                    }
+                    double childrenMaxInfluence = 0;
+                    List<String> children = childStages.get(parent);
+                    boolean isChildrenInfluenceAvailable = true;
+                    for (String child: children) {
+                        if (!stagePriorities.containsKey(child)) { //如果某个子阶段还未计算出influence，则当前阶段不计算influence
+                            isChildrenInfluenceAvailable = false;
+                            break;
+                        } else {
+                            childrenMaxInfluence = Math.max(childrenMaxInfluence, stagePriorities.get(child));
+                        }
+                    }
+                    if (isChildrenInfluenceAvailable) {
+                        stageDepth.put(parent, stageDepth.get(stage) + 1);
+                        double influence = weight * stageDepth.get(parent) + (1 - weight) * children.size() + childrenMaxInfluence;
+                        stagePriorities.put(parent, influence);
+                        waitingStages.addLast(parent);
+                    }
+
+                }
+            }
+
+        }
+
+    }
+
+    /**
      * 找出未提交的父阶段
      * @param stage
      * @return
@@ -119,15 +171,15 @@ public class DAGSchedulerForTelescope implements Scheduler{
             List<String> missingParents = getMissingParentStages(stageId);
             if (missingParents.isEmpty()) {
                 readyStages.add(stageId);
-                // 根据子阶段数量为每个阶段设定优先级
-                int childNum = getChildNumber(stageId);
-                readyStagePriorityList.add(stageId, childNum + 1);
+//                // 根据子阶段数量为每个阶段设定优先级
+//                int childNum = getDescendantNumber(stageId);
+//                readyStagePriorityList.add(stageId, childNum + 1);
 
                 // 计算当前stage中任务的最早开始时间
                 // 分析各个父阶段中任务的最晚完成时间，作为当前阶段中任务的最早开始时间
                 List<String> parents = stageDependencies.get(stageId);
                 if (parents == null || parents.isEmpty()) {
-                    stageForStartingTime.put(stageId, 0);
+                    stageForStartingTime.add(stageId, 0);
                 } else {
                     int latestTime = 0;
                     for (String parent: parents) {
@@ -136,7 +188,7 @@ public class DAGSchedulerForTelescope implements Scheduler{
                             latestTime = Math.max(latestTime, task.finishTime);
                         }
                     }
-                    stageForStartingTime.put(stageId, latestTime);
+                    stageForStartingTime.add(stageId, latestTime);
                 }
 
             } else {
@@ -149,26 +201,62 @@ public class DAGSchedulerForTelescope implements Scheduler{
 
 
     public void submitResultStage(String stageId) {
+        Random rand = new Random(500);
         // 计算childStages
         findChildStages(stageId);
+
+        // 计算影响力
+        getStageInfluence(stageId);
 
         // 将所有的source stage添加到ready stage列表中
         submitStage(stageId);
 
         // 从就绪队列中调度可调度的阶段
-        // 按阶段优先级的顺序调度
+        // 按阶段开始时间的顺序调度，如果多个阶段开始时间相同，按优先级的顺序调度
         while (!stageForStartingTime.isEmpty()) {
-            SortedList.Entry<String, Integer> first = readyStagePriorityList.removeLast();
-            String readyStage = first.getId();
-            Integer priority = first.getValue();
-            Integer startTime = stageForStartingTime.remove(readyStage);
+//            SortedList.Entry<String, Double> first = readyStagePriorityList.removeLast();
+//            String readyStage = first.getId();
+//            double priority = first.getValue();
+//            Integer startTime = stageForStartingTime.remove(readyStage);
+            // 选出队列中第一个被调度的程序
+            // 挑选规则是优先选开始时间最早的阶段。如果有多个阶段的开始时间相同，则选择优先级最高的阶段
+//            List<String> stageWithSameStartTime = new ArrayList<>();
+            SortedList<String, Double> stageWithSameStartTime = new SortedList<>();
+            Iterator<SortedList.Entry<String, Integer>> iterator = stageForStartingTime.iterator();
+            SortedList.Entry<String, Integer> firstEntry = iterator.next();
+            Integer startTime = firstEntry.getValue();
+            stageWithSameStartTime.add(firstEntry.getId(), stagePriorities.get(firstEntry.getId()));
+            while (iterator.hasNext()) {
+                SortedList.Entry<String, Integer> entry = iterator.next();
+                if (entry.getValue().equals(startTime)) {
+                    stageWithSameStartTime.add(entry.getId(), stagePriorities.get(entry.getId()));
+                } else {
+                    break;
+                }
+            }
+
+            // 按照规则，找出第一个被调度的阶段
+            SortedList.Entry<String, Double> entry = stageWithSameStartTime.removeLast();
+            String readyStage = entry.getId();
+            double priority = entry.getValue();
+//            String readyStage = firstEntry.getId();
+//            double priority = stagePriorities.get(readyStage);
+//            for (String stage: stageWithSameStartTime) {
+//                if (stagePriorities.get(stage) > priority) {
+//                    readyStage = stage;
+//                    priority = stagePriorities.get(stage);
+//                }
+//            }
+            stageForStartingTime.removeByKey(readyStage);
+
+
             // 执行该stage
-            logger.debug("Runs stage {}", readyStage);
+            logger.debug("Runs stage {}, priority is {}.", readyStage, priority);
             List<Task> taskSet = new ArrayList<>(parallelism);
             for (int i = 0; i < parallelism; i++) {
                 // 计算该task的完成时间，更新taskSlot完成该task的时间
                 TaskSlot slot = taskSlots.getFirst();
-                Task task = new Task(priority, 1);
+                Task task = new Task(priority, rand.nextInt(30) + 3);
                 task.finishTime = Math.max(slot.getAvailableTime(), startTime) + task.duration;
                 slot.setAvailableTime(task.finishTime);
                 taskSlots.add(slot);

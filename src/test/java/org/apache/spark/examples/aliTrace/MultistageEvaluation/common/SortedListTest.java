@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
+import java.util.Random;
 
 /** 
 * SortedList Tester. 
@@ -19,19 +20,24 @@ public class SortedListTest {
     @Test
     public static void main(String[] args) {
         //TODO: Test goes here... 
-        SortedList list = new SortedList();
-        list.add(new SortedList.Entry<String, Integer>("1", 12));
-        list.add(new SortedList.Entry<>("3", 11));
-        list.add(new SortedList.Entry<>("2", 19));
-        list.add(new SortedList.Entry<>("4", 12));
+        SortedList<String, String> list = new SortedList<>();
+        list.add("1", "a");
+        list.add("3", "11");
+        list.add(new SortedList.Entry<>("2", "c"));
+        list.add(new SortedList.Entry<>("4", "a"));
 
-        logger.info("list contains 2: {}", list.contains(new SortedList.Entry<>("2", 11)));
+        logger.info("list contains 2: {}", list.contains(new SortedList.Entry<String, String>("2", "c")));
         logger.info("list containsKey 2: {}", list.containsId("2"));
 
-        Iterator<SortedList.Entry<String, Integer>> iterator = list.iterator();
+        Iterator<SortedList.Entry<String, String>> iterator = list.iterator();
         while (iterator.hasNext()) {
-            SortedList.Entry<String, Integer> entry = iterator.next();
+            SortedList.Entry<String, String> entry = iterator.next();
             logger.info("{}, {}", entry.id, entry.value);
+        }
+
+        Random random = new Random(515);
+        for (int i = 0; i < 100; i++) {
+            logger.info("{}", random.nextInt(20) + 3);
         }
 
     }
