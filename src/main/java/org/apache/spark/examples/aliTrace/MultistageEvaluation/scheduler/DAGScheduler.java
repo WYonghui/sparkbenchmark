@@ -116,7 +116,7 @@ public class DAGScheduler implements Scheduler{
     }
 
 
-    public void submitResultStage(String stageId) {
+    public int submitResultStage(String stageId) {
         // 计算childStages
         findChildStages(stageId);
 
@@ -160,7 +160,7 @@ public class DAGScheduler implements Scheduler{
         }
 
         logger.info("Job completion time is {}s in Spark", taskSlots.getLast().getAvailableTime());
-
+        return taskSlots.getLast().getAvailableTime();
     }
 
     public boolean isFinishedStage(String stageId) {

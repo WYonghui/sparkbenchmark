@@ -17,7 +17,7 @@ public class JobCommandParserTest {
 
     @Test
     public static void main(String[] args) {
-        //TODO: Test goes here... 
+        // Test goes here...
         JobCommandParser parser = new JobCommandParser("JobCommandParserTest");
         String[] strs = new String[]{"-s", "spark", "-j", "/opt/test", "-p", "12", "-c", "8"};
 //        String[] strs = new String[]{"-s", "spark", "-j", "/opt/test", "-p", "12"}; //error test

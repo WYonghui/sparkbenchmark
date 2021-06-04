@@ -19,7 +19,7 @@ public class SortedListTest {
 
     @Test
     public static void main(String[] args) {
-        //TODO: Test goes here... 
+        // Test goes here...
         SortedList<String, String> list = new SortedList<>();
         list.add("1", "a");
         list.add("3", "11");

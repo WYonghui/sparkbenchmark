@@ -10,10 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -69,22 +66,58 @@ public class HelloWorld {
 //        LOG.info(end2);
 //        LOG.info((Long.parseLong(end) - Long.parseLong(start)) + "");
 
+
 //    test Set
-        String path = "C:\\Users\\10564\\Downloads\\enwiki-2018-hc-t.graph";
-        FileInputStream inputStream = new FileInputStream(path);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String row;
-        int line = 0;
-        while ((row = reader.readLine()) != null) {
-            LOG.info(row);
-            line++;
-            if (line >= 10) {
-                break;
-            }
+//        String path = "C:\\Users\\10564\\Downloads\\enwiki-2018-hc-t.graph";
+//        FileInputStream inputStream = new FileInputStream(path);
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//        String row;
+//        int line = 0;
+//        while ((row = reader.readLine()) != null) {
+//            LOG.info(row);
+//            line++;
+//            if (line >= 10) {
+//                break;
+//            }
+//        }
+//
+//        reader.close();
+//        inputStream.close();
+
+//        test rand function
+//        Random random = new Random(527);
+//
+        for (int i = 0; i < 60; i++) {
+            System.out.println(random.nextInt(50) +5);
         }
 
-        reader.close();
-        inputStream.close();
+
+//        test possion Probability
+//        for (int i = 0; i < 50; i++) {
+//            System.out.println(getPossionVariable(8));
+//        }
+    }
+
+    private static Random random = new Random(516);
+
+    private static int getPossionVariable(double lamda) {
+        int x = 0;
+//        double y = Math.random();
+        double y = random.nextDouble();
+        double cdf = getPossionProbability(x, lamda);
+        while (cdf < y) {
+            x++;
+            cdf += getPossionProbability(x, lamda);
+        }
+        return x;
+    }
+
+    private static double getPossionProbability(int k, double lamda) {
+        double c = Math.exp(-lamda), sum = 1;
+        for (int i = 1; i <= k; i++) {
+            sum *= lamda / i;
+        }
+        return sum * c;
     }
 
 }

@@ -17,7 +17,7 @@ import java.util.*;
 /**
  * Submitting a job to the cluster, the scheduler proposes a scheduling plan and calculates the job completion time.
  * java -cp spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.spark.examples.aliTrace.MultistageEvaluation.SubmittingJob \
-     -j "F:\telescope\测试\阿里巴巴数据集\指定job的信息\j_2372877-50.csv"  -c 480 -p 600 -s telescope -w 0.6
+     -j F:\telescope\测试\阿里巴巴数据集\指定作业的信息\j_3731856-30.csv -c 480 -p 600 -s telescope -w 0.2
  * @author yonghui
  * @date 2020-09-29
  */
@@ -41,15 +41,15 @@ public class SubmittingJob {
 
     }
 
-    public void submitJob() {
-        dagScheduler.submitResultStage(resultStage);
+    public int submitJob() {
+        return dagScheduler.submitResultStage(resultStage);
     }
 
     /**
      * 分析作业拓扑，找出result stage和作业中阶段之间的依赖关系
      * @param path 提交作业的路径
      */
-    private void init(String path) {
+    public void init(String path) {
         try {
             FileReader fileReader = new FileReader(path);
             BufferedReader reader = new BufferedReader(fileReader);
@@ -93,9 +93,12 @@ public class SubmittingJob {
                         stageNum++;
                         visited.put(stage, true);
 
-                        for (String parent: stageInfo.get(stage)) {
-                            if (!visited.containsKey(parent)) {
-                                queue.addLast(parent);
+                        List<String> parents = stageInfo.get(stage);
+                        if (parents != null) {
+                            for (String parent: parents) {
+                                if (!visited.containsKey(parent)) {
+                                    queue.addLast(parent);
+                                }
                             }
                         }
                     }

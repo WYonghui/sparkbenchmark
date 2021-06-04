@@ -8,6 +8,8 @@ import java.io.*;
 
 /**
  * 从alibaba trace中获取指定job的dag信息
+ * java -cp spark-benchmark-1.0-SNAPSHOT-jar-with-dependencies.jar org.apache.spark.examples.aliTrace.MultistageEvaluation.GetJobInformation \
+ -s F:\telescope\测试\阿里巴巴数据集\batch_task.csv -d F:\telescope\测试\阿里巴巴数据集\指定job的信息\ -j j_1981074 -n 10
  * @author yonghui
  * @since 2020-09-29
  * @description
@@ -37,7 +39,7 @@ public class GetJobInformation {
             commandLine = parser.parse(options, args);
         } catch (ParseException ex) {
             HelpFormatter helper = new HelpFormatter();
-            helper.printHelp("GetJobInformantion -s <srcFile> -d <dstFile> -j <jobId> -n <stageNum>", options);
+            helper.printHelp("GetJobInformation -s <srcFile> -d <dstFile> -j <jobId> -n <stageNum>", options);
             System.exit(-1);
         }
 

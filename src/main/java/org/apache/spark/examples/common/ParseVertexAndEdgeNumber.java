@@ -18,7 +18,7 @@ public class ParseVertexAndEdgeNumber {
     final static Logger log = LoggerFactory.getLogger(ParseVertexAndEdgeNumber.class);
 
     //返回值的第一个参数是task数量，第二个参数是task之间边数
-    private Tuple2<Integer, Integer> calculatingStagesAndEdges(Map<String, ArrayList<String>> jobInfo, String jobName) {
+    public Tuple2<Integer, Integer> calculatingStagesAndEdges(Map<String, ArrayList<String>> jobInfo, String jobName) {
         Map<String, ArrayList<String>> taskInfo = new HashMap<>();
         Iterator<String> taskIterator = jobInfo.get(jobName).iterator();
         Set<String> medianTasks = new HashSet<>(); //所有非resultTask的task
@@ -177,7 +177,7 @@ public class ParseVertexAndEdgeNumber {
         //逐个分析job
         while (iterator.hasNext()) {
             String jobName = iterator.next();  //job ID
-            Integer taskNum = jobInfo.get(jobName).size();  //当前job中task数量
+//            Integer taskNum = jobInfo.get(jobName).size();  //当前job中task数量
 
 //            if (!jobName.equals("j_319986")) continue;
 
@@ -185,7 +185,8 @@ public class ParseVertexAndEdgeNumber {
             log.debug("Calculating the stage and edge number of job " + jobName);
             Tuple2<Integer, Integer> stageAndEdgeNumber = parseAliData.calculatingStagesAndEdges(jobInfo, jobName);
 
-            if (stageAndEdgeNumber._1 == 1) { //去掉非DAG型作业
+            //去掉非DAG型作业（只有一个stage或者具有环路）
+            if (stageAndEdgeNumber._1 <= 1) {
                 continue;
             }
 

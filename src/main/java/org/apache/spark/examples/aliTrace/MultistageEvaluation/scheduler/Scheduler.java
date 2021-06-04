@@ -5,5 +5,5 @@ package org.apache.spark.examples.aliTrace.MultistageEvaluation.scheduler;
  * @since 2020-10-02
  */
 public interface Scheduler {
-    public void submitResultStage(String stageId);
+    public int submitResultStage(String stageId);
 }

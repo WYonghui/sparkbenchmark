@@ -13,7 +13,7 @@ public class SortedTaskSlotsTest {
 
     @Test
     public static void main(String[] args) {
-        //TODO: Test goes here...
+        // Test goes here...
         SortedTaskSlots taskSlots = new SortedTaskSlots(3);
         TaskSlot slot = taskSlots.getFirst();
         slot.setAvailableTime(slot.getAvailableTime() + 6);

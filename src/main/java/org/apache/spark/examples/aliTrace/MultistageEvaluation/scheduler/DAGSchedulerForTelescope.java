@@ -27,6 +27,7 @@ public class DAGSchedulerForTelescope implements Scheduler{
     private SortedTaskSlots taskSlots;
     private Integer parallelism;
     private Double weight;
+    private Random random;
 
     public DAGSchedulerForTelescope(Map<String, ArrayList<String>> stageInfo, Integer coreNum, Integer parallelism, Double weight) {
         this.stageDependencies = stageInfo;
@@ -36,6 +37,7 @@ public class DAGSchedulerForTelescope implements Scheduler{
         this.stageForStartingTime = new SortedList<>();
 //        this.readyStagePriorityList = new HashMap<>();
         this.stagePriorities = new HashMap<>();
+        this.random = new Random(516);
 
         this.taskSlots = new SortedTaskSlots(coreNum);
         this.parallelism = parallelism;
@@ -51,9 +53,13 @@ public class DAGSchedulerForTelescope implements Scheduler{
         queue.addLast(resultStage);
         while (!queue.isEmpty()) {
             String stage = queue.removeFirst();
+            if (visited.contains(stage)) {
+                continue;
+            }
+
             List<String> parents = stageDependencies.get(stage);
-            for (String parent: parents) {
-                if (!visited.contains(parent)) {
+            if (parents != null) {
+                for (String parent: parents) {
                     ArrayList<String> children = childStages.get(parent);
                     if (children == null) {
                         children = new ArrayList<>();
@@ -62,8 +68,8 @@ public class DAGSchedulerForTelescope implements Scheduler{
                     childStages.put(parent, children);
 
                     queue.add(parent);
-                }
 
+                }
             }
 
             visited.add(stage);
@@ -108,7 +114,7 @@ public class DAGSchedulerForTelescope implements Scheduler{
      */
     private void getStageInfluence(String resultStage) {
 
-        stagePriorities.put(resultStage, 1.0); // result stage的influence设定为1
+        stagePriorities.put(resultStage, 2.0); // result stage的influence设定为1
         Map<String, Integer> stageDepth = new HashMap<>();
         stageDepth.put(resultStage, 1);
 
@@ -123,8 +129,10 @@ public class DAGSchedulerForTelescope implements Scheduler{
                     if (stagePriorities.containsKey(parent)) {
                         continue;
                     }
-                    double childrenMaxInfluence = 0;
+
                     List<String> children = childStages.get(parent);
+                    double childrenMaxInfluence = 0;
+                    int depth = 0;
                     boolean isChildrenInfluenceAvailable = true;
                     for (String child: children) {
                         if (!stagePriorities.containsKey(child)) { //如果某个子阶段还未计算出influence，则当前阶段不计算influence
@@ -132,11 +140,65 @@ public class DAGSchedulerForTelescope implements Scheduler{
                             break;
                         } else {
                             childrenMaxInfluence = Math.max(childrenMaxInfluence, stagePriorities.get(child));
+                            depth = Math.max(depth, stageDepth.get(child));
                         }
                     }
                     if (isChildrenInfluenceAvailable) {
-                        stageDepth.put(parent, stageDepth.get(stage) + 1);
-                        double influence = weight * stageDepth.get(parent) + (1 - weight) * children.size() + childrenMaxInfluence;
+                        stageDepth.put(parent, ++depth);
+                        double influence = weight * depth + (1 - weight) * children.size() + childrenMaxInfluence;
+                        stagePriorities.put(parent, influence);
+                        waitingStages.addLast(parent);
+                    }
+
+                }
+            }
+
+        }
+
+    }
+
+    /**
+     * 根据影响力计算公式计算每个阶段的影响力
+     * 影响力计算公式为深度与子阶段数量的加权平均
+     * @param resultStage result stage
+     * @return stage的影响力
+     */
+    private void getStageInfluence2(String resultStage) {
+
+        stagePriorities.put(resultStage, 1.0); // result stage的influence设定为1
+        Map<String, Integer> stageDepth = new HashMap<>();
+        stageDepth.put(resultStage, 1);
+
+        // bfs设定所有阶段的influences
+        Deque<String> waitingStages = new LinkedList<>();
+        waitingStages.add(resultStage);
+        while (!waitingStages.isEmpty()) {
+            String stage = waitingStages.removeFirst();
+            List<String> parents = stageDependencies.get(stage);
+            if (parents != null) {
+                for (String parent: parents) {
+                    if (stagePriorities.containsKey(parent)) {
+                        continue;
+                    }
+
+                    List<String> children = childStages.get(parent);
+                    Integer depth = 0;
+                    boolean isChildrenInfluenceAvailable = true;
+                    for (String child: children) {
+                        // 如果某个子阶段还未计算出influence，则当前阶段不计算influence
+                        // 可保证计算每个阶段时，获取到的深度是最大深度
+                        if (!stagePriorities.containsKey(child)) {
+                            isChildrenInfluenceAvailable = false;
+                            break;
+                        } else {
+                            depth = Math.max(depth, stageDepth.get(child));
+                        }
+                    }
+
+                    //所有子阶段都已经计算出influence，计算当前阶段的影响力
+                    if (isChildrenInfluenceAvailable) {
+                        stageDepth.put(parent, ++depth);
+                        double influence = weight * depth + (1 - weight) * children.size();
                         stagePriorities.put(parent, influence);
                         waitingStages.addLast(parent);
                     }
@@ -155,9 +217,13 @@ public class DAGSchedulerForTelescope implements Scheduler{
      */
     public List<String> getMissingParentStages(String stage) {
         List<String> unfinishedParentStage = new ArrayList<>();
-        for (String parent: stageDependencies.get(stage)) {
-            if (!isFinishedStage(parent)) {
-                unfinishedParentStage.add(parent);
+
+        List<String> parents = stageDependencies.get(stage);
+        if (parents != null) {
+            for (String parent: stageDependencies.get(stage)) {
+                if (!isFinishedStage(parent)) {
+                    unfinishedParentStage.add(parent);
+                }
             }
         }
 
@@ -200,13 +266,38 @@ public class DAGSchedulerForTelescope implements Scheduler{
     }
 
 
-    public void submitResultStage(String stageId) {
-        Random rand = new Random(500);
+    /**
+     * 产生符合泊松分布的随机数
+     * @param lamda
+     * @return
+     */
+    private int getPossionVariable(double lamda) {
+        int x = 0;
+//        double y = Math.random();
+        double y = random.nextDouble();
+        double cdf = getPossionProbability(x, lamda);
+        while (cdf < y) {
+            x++;
+            cdf += getPossionProbability(x, lamda);
+        }
+        return x;
+    }
+
+    private double getPossionProbability(int k, double lamda) {
+        double c = Math.exp(-lamda), sum = 1;
+        for (int i = 1; i <= k; i++) {
+            sum *= lamda / i;
+        }
+        return sum * c;
+    }
+
+    public int submitResultStage(String stageId) {
+
         // 计算childStages
         findChildStages(stageId);
 
         // 计算影响力
-        getStageInfluence(stageId);
+        getStageInfluence2(stageId);
 
         // 将所有的source stage添加到ready stage列表中
         submitStage(stageId);
@@ -253,10 +344,12 @@ public class DAGSchedulerForTelescope implements Scheduler{
             // 执行该stage
             logger.debug("Runs stage {}, priority is {}.", readyStage, priority);
             List<Task> taskSet = new ArrayList<>(parallelism);
+//            int taskDuration = getPossionVariable(8);
+            int taskDuration = random.nextInt(50) + 5;
             for (int i = 0; i < parallelism; i++) {
                 // 计算该task的完成时间，更新taskSlot完成该task的时间
                 TaskSlot slot = taskSlots.getFirst();
-                Task task = new Task(priority, rand.nextInt(30) + 3);
+                Task task = new Task(priority, taskDuration);
                 task.finishTime = Math.max(slot.getAvailableTime(), startTime) + task.duration;
                 slot.setAvailableTime(task.finishTime);
                 taskSlots.add(slot);
@@ -279,7 +372,9 @@ public class DAGSchedulerForTelescope implements Scheduler{
 
         }
 
-        logger.info("Job completion time is {}s in Telescope", taskSlots.getLast().getAvailableTime());
+        int jct = taskSlots.getLast().getAvailableTime();
+        logger.debug("Job completion time is {}s in Telescope", jct);
+        return jct;
 
     }
 
